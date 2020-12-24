@@ -70,12 +70,48 @@ const Buildings = () => {
                 {currentBuilding ? (
                     <div>
                         <h4>Building</h4>
+
+                        <div>
+                            <img src = {`
+                            https://s3.amazonaws.com/uploaded.prod.corretordireto/images/properties/thumb/${currentBuilding.default_image.id}.jpeg
+                            `} alt = {currentBuilding.default_image.description} 
+                            className = "rounded mx-auto d-block img-thumbnail" />
+                        </div>
+
+                        <div>
+                            <label>
+                                <strong>Update at:</strong>
+                            </label>{" "}
+                            {currentBuilding.updated_at}
+                        </div>
+
                         <div>
                             <label>
                                 <strong>Name:</strong>
                             </label>{" "}
                             {currentBuilding.name}
                         </div>
+
+                        <div>
+                            <label>
+                                <strong>Address:</strong>
+                            </label>{" "}
+                            {currentBuilding.address.street_type}{" "}
+                            {currentBuilding.address.street}{", "}
+                            {currentBuilding.address.number}{", "}
+                            {currentBuilding.address.area}{"."}<br />
+                            {currentBuilding.address.city}{"/"}
+                            {currentBuilding.address.state}{" "}
+
+                        </div>
+
+                        <div>
+                            <label>
+                                <strong>Description:</strong>
+                            </label>{" "}
+                            {currentBuilding.description}
+                        </div>
+                        
                     </div>
                 ) : (
                     <div>
