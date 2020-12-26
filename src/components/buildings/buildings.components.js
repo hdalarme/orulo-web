@@ -3,6 +3,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import BuildingDataService from "../../services/orulo.building.service";
 
 const Buildings = () => {
+
     const [buildings, setBuildings] = useState([]);
     const [currentBuilding, setCurrentBuilding] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
