@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import Pagination from "@material-ui/lab/Pagination";
 import BuildingDataService from "../../services/orulo.building.service";
+import FavoriteDataService from "../../services/favorite.service";
 
 import Favorite from "../favorites/favorite.components";
+import Unfavorite from "../favorites/unfavorite.components";
 
 const Buildings = (props) => {
 
     const currentUser = JSON.parse(localStorage.getItem("userData"));
     const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
 
-    
+    const [favorite, setFavorite] = useState('');
 
     const [buildings, setBuildings] = useState([]);
     const [currentBuilding, setCurrentBuilding] = useState(null);
@@ -38,7 +40,24 @@ const Buildings = (props) => {
     const setActiveBuilding = (building, index) => {
         setCurrentBuilding(building);
         setCurrentIndex(index);
+
+        getFavorite(building);
+
       };
+
+      async function getFavorite(building) {
+        setFavorite(undefined);
+        const response = await FavoriteDataService.index(building.id, currentUser.data.id);
+        if (response.data) {
+            response.data.map((item) => {
+                setFavorite(item);
+                
+                
+            })
+        }
+        
+        
+    }
 
       if (!currentUser) {
         return <Redirect to="/login" />;
@@ -87,16 +106,24 @@ const Buildings = (props) => {
                                 <h4>Building</h4> 
                             </div>
                             <div className="col-md-2" >
-                                <Favorite currentBuilding={currentBuilding} /> 
+                                { favorite ? (
+                                    <Unfavorite currentBuilding={currentBuilding} /> 
+                                ) : (
+                                    <Favorite currentBuilding={currentBuilding} /> 
+                                )
+
+                                }
+                                
                                 
                             </div>
                         </div>
 
                         <div>
                             <img src = {`
-                            https://s3.amazonaws.com/uploaded.prod.corretordireto/images/properties/thumb/${currentBuilding.default_image.id}.jpeg
+                            ${currentBuilding.default_image['200x140']}
                             `} alt = {currentBuilding.default_image.description} 
                             className = "rounded mx-auto d-block img-thumbnail" />
+                            
                         </div>
 
                         <div>

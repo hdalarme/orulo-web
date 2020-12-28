@@ -3,7 +3,7 @@ import FavoriteDataService from "../../services/favorite.service";
 
 import { Heart, HeartFill } from 'react-bootstrap-icons';
 
-const Favorites = (props) => {
+const Unfavorites = (props) => {
 
     const currentUser = JSON.parse(localStorage.getItem("userData"));
     const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
@@ -11,6 +11,7 @@ const Favorites = (props) => {
     const [favorite, setFavorite] = useState([]);
     
     const [submitted, setSubmitted] = useState(false);
+
 
     async function handleSubmit() {
 
@@ -36,14 +37,14 @@ const Favorites = (props) => {
             console.log(props.currentBuilding.id)
             ) : (
                
-                <form onSubmit={handleSubmit}>
-                <button type="submit" className="btn">
-                    <Heart
-                        color="royalblue" 
-                        size={24}
-                    />      
-                </button>
-                </form>
+            <form onSubmit={handleSubmit}>
+            <button type="submit" className="btn">
+                <HeartFill
+                    color="royalblue" 
+                    size={24}
+                />      
+            </button>
+            </form>
                
             )}
         </div>
@@ -55,4 +56,4 @@ const Favorites = (props) => {
 
 }
 
-export default Favorites;    
+export default Unfavorites;    

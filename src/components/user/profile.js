@@ -14,7 +14,7 @@ const Profile = () => {
         <div className="container">
           <header className="jumbotron">
             <h3>
-              <strong>{currentUser.name}</strong> Profile
+              <strong>{currentUser.data.name}</strong> Profile
             </h3>
           </header>
           <p>
@@ -22,10 +22,10 @@ const Profile = () => {
            {currentUserH.substr(currentUserH.length - 5)}
           </p>
           <p>
-            <strong>Id:</strong> {currentUser.id}
+            <strong>Id:</strong> {currentUser.data.id}
           </p>
           <p>
-            <strong>Email:</strong> {currentUser.email}
+            <strong>Email:</strong> {currentUser.data.email}
           </p>
           <strong>Authorities:</strong>
           <ul>
