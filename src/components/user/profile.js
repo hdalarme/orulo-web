@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 const Profile = () => {
 
-    const currentUser = JSON.parse(localStorage.getItem("userData")).data;
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
     const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
 
     if (!currentUser) {

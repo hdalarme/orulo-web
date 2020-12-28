@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import UserDataService from "../../services/user.service";
 
@@ -80,6 +80,10 @@ const Register = () => {
                                     className="btn btn-primary btn-block" >
                                     Register
                                 </button>
+                            </div>
+
+                            <div className="form-group">
+                            <Link to={"/login"} className="nav-link"> Login </Link>
                             </div>
 
                         </form>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import UserDataService from "../../services/user.service";
 
@@ -13,8 +13,11 @@ const Login = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        await UserDataService.login(email, password);
-
+        try {
+            await UserDataService.login(email, password);
+        } catch (error) {
+            
+        }
         setSubmitted(true);
         setEmail('');
         setPassword('');
@@ -67,6 +70,11 @@ const Login = () => {
                                     className="btn btn-primary btn-block" >
                                     Login
                                 </button>
+                            </div>
+
+                            <div className="form-group">
+                            <Link to={"/"} className="nav-link"> Esqueci minha senha </Link>
+                            <Link to={"/register"} className="nav-link"> Registro </Link>
                             </div>
 
                         </form>

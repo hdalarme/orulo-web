@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from 'react-router-dom';
 import Pagination from "@material-ui/lab/Pagination";
 import BuildingDataService from "../../services/orulo.building.service";
 
-const Buildings = () => {
+import Favorite from "../favorites/favorite.components";
+
+const Buildings = (props) => {
+
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+    const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
+
+    
 
     const [buildings, setBuildings] = useState([]);
     const [currentBuilding, setCurrentBuilding] = useState(null);
@@ -13,7 +21,7 @@ const Buildings = () => {
 
     useEffect(() => {
         getBuildings();
-    }, [page])
+    }, [page, props.currentBuilding])
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -31,6 +39,10 @@ const Buildings = () => {
         setCurrentBuilding(building);
         setCurrentIndex(index);
       };
+
+      if (!currentUser) {
+        return <Redirect to="/login" />;
+    }
 
     return (
         <div className="list row"> 
@@ -70,7 +82,15 @@ const Buildings = () => {
             <div className="col-md-6" >
                 {currentBuilding ? (
                     <div>
-                        <h4>Building</h4>
+                        <div className="row"> 
+                            <div className="col-md-10" >
+                                <h4>Building</h4> 
+                            </div>
+                            <div className="col-md-2" >
+                                <Favorite currentBuilding={currentBuilding} /> 
+                                
+                            </div>
+                        </div>
 
                         <div>
                             <img src = {`

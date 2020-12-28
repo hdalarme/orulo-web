@@ -5,7 +5,7 @@ import UserDataService from "../services/user.service";
 
 function MenuTopo() {
 
-  //const currentUser = JSON.parse(localStorage.getItem("userData"));
+  const currentUser = JSON.parse(localStorage.getItem("userData"));
   
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -20,7 +20,7 @@ function MenuTopo() {
             </li>
 
           </div>
-          { /*currentUser ? (
+          { currentUser ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
@@ -43,11 +43,11 @@ function MenuTopo() {
 
                 <li className="nav-item">
                   <Link to={"/register"} className="nav-link">
-                    Sign Up
+                    Registro
                   </Link>
                 </li>
               </div>
-            )*/}
+            )}
         </nav>
     );
   }
