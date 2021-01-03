@@ -107,7 +107,7 @@ const Buildings = (props) => {
                             </div>
                             <div className="col-md-2" >
                                 { favorite ? (
-                                    <Unfavorite currentBuilding={currentBuilding} /> 
+                                    <Unfavorite favorite={favorite} /> 
                                 ) : (
                                     <Favorite currentBuilding={currentBuilding} /> 
                                 )
