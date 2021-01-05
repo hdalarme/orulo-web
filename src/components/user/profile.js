@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 const Profile = () => {
 
-    const currentUser = JSON.parse(localStorage.getItem("userData"));
-    const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
+    const currentUser = JSON.parse(sessionStorage.getItem("userData"));
+    const currentUserH = JSON.parse(sessionStorage.getItem("userHeader"));
 
     if (!currentUser) {
         return <Redirect to="/login" />;

@@ -9,8 +9,12 @@ import Unfavorite from "../favorites/unfavorite.components";
 
 const Buildings = (props) => {
 
-    const currentUser = JSON.parse(localStorage.getItem("userData"));
-    const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
+    //const currentUser = JSON.parse(localStorage.getItem("userData"));
+    //const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
+
+    const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem("userData")));
+
+    console.log(currentUser);
 
     const [favorite, setFavorite] = useState('');
 
@@ -27,12 +31,14 @@ const Buildings = (props) => {
 
     const handlePageChange = (event, value) => {
         setPage(value);
+        setCurrentBuilding(null);
+        setCurrentIndex(-1);
       };
 
     async function getBuildings() {
         
         const response = await BuildingDataService.index(page);
-        console.log(response.data);
+        //console.log(response.data);
         setBuildings(response.data.buildings);
         setCount(response.data.total_pages);
     };
@@ -50,9 +56,7 @@ const Buildings = (props) => {
         const response = await FavoriteDataService.index(building.id, currentUser.data.id);
         if (response.data) {
             response.data.map((item) => {
-                setFavorite(item);
-                
-                
+                setFavorite(item);   
             })
         }
         

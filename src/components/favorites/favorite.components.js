@@ -5,8 +5,8 @@ import { Heart, HeartFill } from 'react-bootstrap-icons';
 
 const Favorites = (props) => {
 
-    const currentUser = JSON.parse(localStorage.getItem("userData"));
-    const currentUserH = JSON.parse(localStorage.getItem("userHeader"));
+    const currentUser = JSON.parse(sessionStorage.getItem("userData"));
+    const currentUserH = JSON.parse(sessionStorage.getItem("userHeader"));
 
     const [favorite, setFavorite] = useState([]);
     

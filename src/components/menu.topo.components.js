@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import UserDataService from "../services/user.service";
 
 function MenuTopo() {
 
-  const currentUser = JSON.parse(localStorage.getItem("userData"));
+console.log(sessionStorage.getItem("userData"));
+
+
+  //const currentUser = JSON.parse(localStorage.getItem("userData"));
+  const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem("userData")));
   
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">
